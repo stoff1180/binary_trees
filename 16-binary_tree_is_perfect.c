@@ -1,6 +1,6 @@
 #include "binary_trees.h"
 
-int binary_tree_height(const binary_tree_t *tree);
+int binary_tree_Height(const binary_tree_t *tree);
 int is_perfect_recursive(const binary_tree_t *tree, int height, int level);
 int binary_tree_is_perfect(const binary_tree_t *tree);
 
@@ -9,14 +9,14 @@ int binary_tree_is_perfect(const binary_tree_t *tree);
  * @tree: A pointer to the root node of the tree to measure the height.
  * Return: If tree is NULL return 0, Otherwise return height.
  */
-int binary_tree_height(const binary_tree_t *tree)
+int binary_tree_Height(const binary_tree_t *tree)
 {
-	int left_height , right_height;
+	int left_height = 0 , right_height = 0;
 
 	if (tree == NULL)
 		return (0);
-	left_height = tree->left ? binary_tree_height(tree->left) + 1 : 0;
-	right_height = tree->right ? binary_tree_height(tree->right) + 1 : 0;
+	left_height = tree->left ? binary_tree_Height(tree->left) + 1 : 0;
+	right_height = tree->right ? binary_tree_Height(tree->right) + 1 : 0;
 	return ((left_height > right_height) ? left_height : right_height);
 }
 
@@ -48,6 +48,6 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 {
 	int height;
 
-	height = binary_tree_height(tree);
+	height = binary_tree_Height(tree);
 	return (is_perfect_recursive(tree, height, 0));
 }
