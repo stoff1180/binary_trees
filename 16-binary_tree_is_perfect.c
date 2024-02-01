@@ -27,10 +27,8 @@ unsigned char is_leaf(const binary_tree_t *node)
 size_t depth(const binary_tree_t *tree)
 {
 	if (tree->parent != NULL)
-	       return (1 + depth(tree->parent));
-	else
-		return (0);
-		   
+		return (1 + depth(tree->parent));
+	return (0);
 }
 
 /**
@@ -57,14 +55,11 @@ int is_perfect_recursive(const binary_tree_t *tree,
 {
 	if (is_leaf(tree))
 		return (level == leaf_depth ? 1 : 0);
+	if (tree->left == NULL || tree->right == NULL)
+		return (0);
 	else
-	{
-		if (tree->left == NULL || tree->right == NULL)
-			return (0);
-		else
-			return (is_perfect_recursive(tree->left, leaf_depth, level + 1) &&
+		return (is_perfect_recursive(tree->left, leaf_depth, level + 1) &&
 					is_perfect_recursive(tree->right, leaf_depth, level + 1));
-	}
 }
 
 /**
